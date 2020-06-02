@@ -1,0 +1,34 @@
+﻿<Window x:Class="InsuranceComp.View.LoginWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:InsuranceComp"
+        mc:Ignorable="d"
+        WindowStyle="SingleBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        Title="LoginWindow" Height="300" Width="300" ResizeMode="NoResize">
+    <Grid>
+        <materialDesign:Card  Width="274" VerticalAlignment="Center" HorizontalAlignment="Center" Height="251" Margin="20">
+
+            <StackPanel Orientation="Vertical" Margin="20">
+
+                <TextBox x:Name="LoginTextBox" materialDesign:HintAssist.Hint="Логин"
+                                         Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                                         MaxLength="25" />
+
+                <PasswordBox x:Name="LoginFloatingPasswordBox"
+                                             materialDesign:HintAssist.Hint="Пароль"
+                                             Style="{StaticResource MaterialDesignFloatingHintPasswordBox}"
+                                             MaxLength="24" />
+
+                <Button x:Name="LoginEnterButton" Foreground="{StaticResource ButtonForegroundBrush}"  BorderBrush="{x:Null}" Margin="0 10 0 0" Width="70" Height="30" Content="Вход"  Click="LoginEnterButton_Click" />
+                <Button x:Name="ForgetPassword_Button" Style="{StaticResource TextButton}"  Content="Забыли пароль?" Click="ForgetPassword_Button_Click" />
+                <Button x:Name="LoginRegisterButton" Foreground="{StaticResource ButtonForegroundBrush}" BorderBrush="{x:Null}" Margin="30,0" Width="120" Height="30" Content="Регистрация" Click="LoginRegisterButton_Click" />
+
+            </StackPanel>
+
+        </materialDesign:Card>
+    </Grid>
+</Window>

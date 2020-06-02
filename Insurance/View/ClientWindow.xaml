@@ -1,0 +1,37 @@
+﻿<Window x:Class="InsuranceComp.View.ClientWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InsuranceComp"
+        xmlns:materialdesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        WindowStartupLocation="CenterScreen"
+        ResizeMode="NoResize"
+        Title="ClientWindow" Height="320" Width="470" Loaded="ClientWindow_Loaded">
+    
+    <materialdesign:Card>
+        <Viewbox Stretch="UniformToFill">
+            <StackPanel Orientation="Horizontal" Margin="0" Background="{StaticResource BackgroundVeryLigthGreyBrush}">
+                <StackPanel Height="260" Orientation="Vertical" Margin="5">
+                    <StackPanel Orientation="Horizontal">
+                        <materialdesign:PackIcon Kind="Account" VerticalAlignment="Center" Margin="2" />
+                        <TextBox x:Name="UsernameTextBox" Padding="1" BorderBrush="{x:Null}"
+                                 materialdesign:HintAssist.Hint="Логин" FontSize="14"  MaxLength="15" />
+                    </StackPanel>
+                    <TextBox x:Name="NameTextBox" Padding="1" BorderBrush="{x:Null}"
+                             materialdesign:HintAssist.Hint="Имя" FontSize="14" MaxLength="15" />
+                    <TextBox x:Name="SurnameTextBox" Padding="1" BorderBrush="{x:Null}"
+                             materialdesign:HintAssist.Hint="Фамилия" FontSize="14" MaxLength="20" />
+                    <TextBox x:Name="SWTextBox" Padding="1" BorderBrush="{x:Null}"
+                             materialdesign:HintAssist.Hint="Секретное слово" FontSize="14" MaxLength="25" />
+                    <StackPanel Margin="15 1" Orientation="Horizontal">
+                        <Button x:Name="SaveClientbtn" Background="{StaticResource ButtonGreenBrush}" BorderBrush="{StaticResource ButtonGreenBrush}" Margin="35 20" Content="OK" Click="SaveClientbtn_Click" />
+                        <Button x:Name="CancelClientbtn" Margin="20 20" Content="Cancel" Click="CancelClientbtn_Click" />
+                    </StackPanel>
+                </StackPanel>
+            </StackPanel>
+        </Viewbox>
+    </materialdesign:Card>
+</Window>

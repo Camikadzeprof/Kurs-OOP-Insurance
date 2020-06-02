@@ -1,0 +1,205 @@
+﻿<Window x:Class="InsuranceComp.View.MainWindowAgent"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:InsuranceComp"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        WindowStartupLocation="CenterScreen"
+        WindowStyle="None"
+        ResizeMode="NoResize"
+        Title="MainWindowAgent" Height="650" Width="860">
+    <Window.Resources>
+
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="200" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="200" />
+                <EasingDoubleKeyFrame KeyTime="0:0:0.5" Value="60" />
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
+
+    <Grid Background="{StaticResource ForegroundLigthBrush}" >
+
+        <Grid VerticalAlignment="Top" Background="{StaticResource BackgroundBlueBrush}" Height="60" />
+
+        <Grid x:Name="GridMenu"  Width="60" Panel.ZIndex="1" HorizontalAlignment="Left" Background="{StaticResource BackgroundVeryLigthGreyBrush}" Height="650" VerticalAlignment="Top">
+            <StackPanel>
+                <Grid Height="150" Background="{StaticResource ButtonForegroundBrush}">
+                    <Button x:Name="ButtonCloseMenu" Width="60" Height="30" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Visibility="Collapsed" Click="ButtonCloseMenu_Click">
+                        <materialDesign:PackIcon Foreground="{StaticResource BackgroundVeryLigthGreyBrush}" Kind="ArrowLeft" Width="25" Height="25" />
+                    </Button>
+                    <Button x:Name="ButtonOpenMenu" Width="60" Height="30" VerticalAlignment="Top" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Right" Click="ButtonOpenMenu_Click">
+                        <materialDesign:PackIcon Foreground="{StaticResource BackgroundVeryLigthGreyBrush}" Kind="Menu" Width="25" Height="25" />
+                    </Button>
+                </Grid>
+                <ListView Foreground="{StaticResource ButtonForegroundBrush}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Height="500" >
+                    <ListViewItem x:Name="Clients" Height="60" Selected="Clients_Selected" ToolTip="Клиенты">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Human" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Клиенты" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="InsTypes" Height="60" Selected="InsTypes_Selected" ToolTip="Виды страхования">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Dns" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Виды страхования" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="AllInsurances" Height="60" Selected="Insurances_Selected" ToolTip="Договоры">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="FileDocument" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Договоры" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="Incidents" Height="60" Selected="Incidents_Selected" ToolTip="Страховые случаи">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Notebook" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Страховые случаи" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="Payouts" Height="60" Selected="Payouts_Selected" ToolTip="Выплаты">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="CurrencyUsd" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Выплаты" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="Search" Height="60" Selected="Search_Selected" ToolTip="Поиск">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="SearchWeb" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Поиск" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                    <ListViewItem x:Name="Exit" Height="60"  Selected="Exit_Selected" ToolTip="Выйти">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="ExitToApp" Width="25" Height="25" Margin="10" VerticalAlignment="Center" />
+                            <TextBlock Text="Выйти" VerticalAlignment="Center" Margin="20 10" />
+                        </StackPanel>
+                    </ListViewItem>
+                </ListView>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="OpenGrid" Margin="60 60 0 0" Visibility="Collapsed" Background="{StaticResource ButtonForegroundBrush}" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <TextBlock x:Name="OpenWelcomTextBlock" Grid.Row="0" Margin="15" FontSize="18" FontWeight="DemiBold" FontFamily="{StaticResource PackardModern}"/>
+            <TextBlock x:Name="OpenRemindersTextBlock" Grid.Row="1" Margin="15" FontSize="20" FontFamily="{StaticResource PackardModern}" />
+        </Grid>
+
+
+        <Grid x:Name="ClientsGrid" Margin="30 60 0 0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <DataGrid x:Name="ClientsDG" Grid.Row="0" MouseDoubleClick="ClientsDG_MouseDoubleClick" IsReadOnly="True" Background="{StaticResource ButtonForegroundBrush}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="UsernameColumn" Binding="{Binding Username}" Header="Логин" CanUserReorder="False" IsReadOnly="True" Width="Auto" />
+                    <DataGridTextColumn x:Name="NameColumn" Binding="{Binding Name}" Header="Имя" CanUserReorder="False" IsReadOnly="True" Width="Auto" />
+                    <DataGridTextColumn x:Name="SurnameColumn" Binding="{Binding Surname}" Header="Фамилия" CanUserReorder="False" IsReadOnly="True" Width="Auto" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        <Grid x:Name="InsTypesGrid" Margin="60 60 0 0" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="InsTypeDG" Grid.Row="0" MouseDown="InsTypeDG_MouseDown" IsReadOnly="True" Background="{StaticResource ButtonForegroundBrush}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="TypeColumn" Binding="{Binding Type}" Header="Тип" />
+                    <DataGridTextColumn x:Name="FeeColumn" Binding="{Binding Fee}" Header="Взнос" />
+                    <DataGridTextColumn x:Name="MaxPayoutColumn" Binding="{Binding MaxPayout}" Header="Масксимальная сумма выплаты" />
+                </DataGrid.Columns>
+            </DataGrid>
+            
+
+        </Grid>
+
+        <Grid x:Name="InsuranceGrid" Margin="60 60 0 0" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="InsuranceDG" Grid.Row="0" MouseDown="InsuranceDG_MouseDown" IsReadOnly="True" Background="{StaticResource ButtonForegroundBrush}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="InsNumColumn" Binding="{Binding Num}" Header="Номер страховки" />
+                    <DataGridTextColumn x:Name="InsTypeColumn" Binding="{Binding Type}" Header="Тип страховки" />
+                    <DataGridTextColumn x:Name="ClientColumn" Binding="{Binding Username}" Header="Клиент" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Button x:Name="UpdInsBtn" Content="Изменить" Margin="20" Click="UpdInsBtn_Click" />
+                <Button x:Name="DelInsBtn" Content="Удалить" Margin="20" Click="DelInsBtn_Click" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:Name="IncidentsGrid" Margin="60 60 0 0" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="IncidentsDG" Grid.Row="0" MouseDown="IncidentsDG_MouseDown" IsReadOnly="True" Background="{StaticResource ButtonForegroundBrush}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="IdIncColumn" Binding="{Binding IdIncident}" Header="Id случая" />
+                    <DataGridTextColumn x:Name="InsurNumColumn" Binding="{Binding Num}" Header="Номер страховки" />
+                    <DataGridTextColumn x:Name="ExplainColumn" Binding="{Binding Explain}" Header="Описание случая" />
+                    <DataGridTextColumn x:Name="StatusColumn" Binding="{Binding Status}" Header="Статус" />
+                </DataGrid.Columns>
+            </DataGrid>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                <Button x:Name="UpdIncBtn" Content="Посмотреть" Margin="20" Click="UpdIncBtn_Click" />
+                <Button x:Name="DelIncBtn" Content="Удалить" Margin="20" Click="DelIncBtn_Click" />
+            </StackPanel>
+
+        </Grid>
+
+        <Grid x:Name="PayoutsGrid" Margin="60 60 0 0" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <DataGrid x:Name="PayoutsDG" Grid.Row="0" MouseDown="PayoutsDG_MouseDown" IsReadOnly="True" Background="{StaticResource ButtonForegroundBrush}" AutoGenerateColumns="False" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="IdPayoutColumn" Binding="{Binding IdPayout}" Header="Id выплаты" />
+                    <DataGridTextColumn x:Name="IdincColumn" Binding="{Binding IdIncident}" Header="Id случая" />
+                    <DataGridTextColumn x:Name="SumColumn" Binding="{Binding Sum}" Header="Сумма" />
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+    </Grid>
+</Window>

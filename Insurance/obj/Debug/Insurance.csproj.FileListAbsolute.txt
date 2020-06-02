@@ -1,0 +1,16 @@
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\Insurance.csprojAssemblyReference.cache
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\LoginWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\App.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\Insurance_MarkupCompile.cache
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\Insurance_MarkupCompile.lref
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\Director.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\ForgetPasswordWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\MainWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\RegisterWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\ClientWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\InsTypeWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\InsuranceWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\IncForAgent.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\IncForClient.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\IncidentWindow.g.cs
+C:\Users\Lenovo\Desktop\Insurance\Insurance\obj\Debug\View\PayoutWindow.g.cs
