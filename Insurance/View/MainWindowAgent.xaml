@@ -108,7 +108,7 @@
         </Grid>
 
 
-        <Grid x:Name="ClientsGrid" Margin="30 60 0 0" Visibility="Collapsed">
+        <Grid x:Name="ClientsGrid" Margin="60 60 0 0" Visibility="Collapsed">
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
                 <RowDefinition Height="Auto" />
@@ -199,6 +199,117 @@
                 </DataGrid.Columns>
             </DataGrid>
 
+        </Grid>
+        
+        <Grid x:Name="SearchGrid" Margin="60 60 0 0" Visibility="Collapsed">
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <Button x:Name="ClientBtn" Content="Искать клиента" Margin="20" Click="ClientBtn_Click" />
+                <Button x:Name="InsTypeBtn" Content="Искать тип" Margin="20" Click="InsTypeBtn_Click" />
+                <Button x:Name="InsBtn" Content="Искать страховку" Margin="20" Click="InsBtn_Click" />
+                <Button x:Name="InсBtn" Content="Искать случай" Margin="20" Click="InсBtn_Click" />
+                <Button x:Name="PayoutBtn" Content="Искать выплаты" Margin="20" Click="PayoutBtn_Click" />
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="SearchClientsGrid" Margin="60 60 0 0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <ComboBox x:Name="TypeClSearch" Padding="1" FontSize="14">
+                    <ComboBoxItem>По имени</ComboBoxItem>
+                    <ComboBoxItem>По фамилии</ComboBoxItem>
+                    <ComboBoxItem>По логину</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="ClParamTextBox" Padding="1"
+                             FontSize="14" MaxLength="20" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="ClSearchBtn" Content="Поиск" Margin="20" Click="ClSearchBtn_Click" />
+                    <Button x:Name="CancelClBtn" Content="Назад" Margin="20" Click="CancelBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="SearchInsTypesGrid" Margin="60 60 0 0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <ComboBox x:Name="TypeInsTypeSearch" Padding="1" FontSize="14">
+                    <ComboBoxItem>По типу</ComboBoxItem>
+                    <ComboBoxItem>По взносу</ComboBoxItem>
+                    <ComboBoxItem>По максимальной выплате</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="InsTypesParamTextBox" Padding="1"
+                             FontSize="14" MaxLength="20" />
+
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="ItSearchBtn" Content="Поиск" Margin="20" Click="ItSearchBtn_Click" />
+                    <Button x:Name="CancelBtn" Content="Назад" Margin="20" Click="CancelBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="SearchInsGrid" Margin="60 60 0 0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <ComboBox x:Name="TypeInsSearch" Padding="1" FontSize="14">
+                    <ComboBoxItem>По типу</ComboBoxItem>
+                    <ComboBoxItem>По логину клиента</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="InsParamTextBox" Padding="1"
+                             FontSize="14" MaxLength="20" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="InsSearchBtn" Content="Поиск" Margin="20" Click="InsSearchBtn_Click" />
+                    <Button x:Name="CancelInsBtn" Content="Назад" Margin="20" Click="CancelBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+
+        <Grid x:Name="SearchIncGrid" Margin="60 60 0 0" Visibility="Collapsed">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <ComboBox x:Name="TypeIncSearch" Padding="1" FontSize="14">
+                    <ComboBoxItem>По номеру страховки</ComboBoxItem>
+                    <ComboBoxItem>По логину клиента</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="IncParamTextBox" Padding="1"
+                             FontSize="14" MaxLength="20" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="IncSearchBtn" Content="Поиск" Margin="20" Click="IncSearchBtn_Click" />
+                    <Button x:Name="CancelIncBtn" Content="Назад" Margin="20" Click="CancelBtn_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+        
+        <Grid x:Name="SearchPayoutGrid" Margin="60 60 0 0" Visibility="Collapsed">
+            <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" Margin="5">
+                <ComboBox x:Name="TypePayoutSearch" Padding="1" FontSize="14">
+                    <ComboBoxItem>Больше указанного значения</ComboBoxItem>
+                    <ComboBoxItem>Меньше указанного значения</ComboBoxItem>
+                    <ComboBoxItem>Равно указанному значению</ComboBoxItem>
+                </ComboBox>
+                <TextBox x:Name="PayoutParamTextBox" Padding="1"
+                             FontSize="14" MaxLength="20" />
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
+                    <Button x:Name="PayoutSearchBtn" Content="Поиск" Margin="20" Click="PayoutSearchBtn_Click" />
+                    <Button x:Name="CancelPayoutBtn" Content="Назад" Margin="20" Click="CancelBtn_Click" />
+                </StackPanel>
+            </StackPanel>
         </Grid>
 
     </Grid>

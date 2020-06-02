@@ -47,6 +47,12 @@ namespace InsuranceComp.View
             InsuranceGrid.Visibility = Visibility.Collapsed;
             IncidentsGrid.Visibility = Visibility.Collapsed;
             PayoutsGrid.Visibility = Visibility.Collapsed;
+            SearchGrid.Visibility = Visibility.Collapsed;
+            SearchClientsGrid.Visibility = Visibility.Collapsed;
+            SearchInsTypesGrid.Visibility = Visibility.Collapsed;
+            SearchInsGrid.Visibility = Visibility.Collapsed;
+            SearchIncGrid.Visibility = Visibility.Collapsed;
+            SearchPayoutGrid.Visibility = Visibility.Collapsed;
         }
 
         private void Clients_Selected(object sender, RoutedEventArgs e)
@@ -319,7 +325,200 @@ namespace InsuranceComp.View
 
         private void Search_Selected(object sender, RoutedEventArgs e)
         {
+            NotVisible();
+            SearchGrid.Visibility = Visibility.Visible;
+        }
 
+        private void ClientBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchClientsGrid.Visibility = Visibility.Visible;
+        }
+
+        private void ClSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            ClientsGrid.Visibility = Visibility.Visible;
+            var dbContext = new BaseDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            if (TypeClSearch.Text != "")
+            {
+                if (ClParamTextBox.Text != "")
+                {
+                    if (TypeClSearch.Text == "По имени")
+                    {
+                        var clients = unitOfWork.UserRepository.Entities.Where(n => n.Role == 1 && n.Name == ClParamTextBox.Text).ToList();
+                        ClientsDG.ItemsSource = clients;
+                    }
+                    if (TypeClSearch.Text == "По фамилии")
+                    {
+                        var clients = unitOfWork.UserRepository.Entities.Where(n => n.Role == 1 && n.Surname == ClParamTextBox.Text).ToList();
+                        ClientsDG.ItemsSource = clients;
+                    }
+                    if (TypeClSearch.Text == "По логину")
+                    {
+                        var clients = unitOfWork.UserRepository.Entities.Where(n => n.Role == 1 && n.Username == ClParamTextBox.Text).ToList();
+                        ClientsDG.ItemsSource = clients;
+                    }
+                }
+                else MessageBox.Show("Введите значение параметра поиска");
+            }
+            else MessageBox.Show("Выберите параметр поиска");
+            ClParamTextBox.Clear();
+        }
+
+        private void InsBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchInsGrid.Visibility = Visibility.Visible;
+        }
+
+        private void InsSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            InsuranceDG.Visibility = Visibility.Visible;
+            var dbContext = new BaseDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            if (TypeInsSearch.Text != "")
+            {
+                if (InsParamTextBox.Text != "")
+                {
+                    if (TypeInsSearch.Text == "По типу")
+                    {
+                        var inst = unitOfWork.InsuranceRepository.Entities.Where(n => n.Type == InsParamTextBox.Text).ToList();
+                        InsuranceDG.ItemsSource = inst;
+                    }
+                    if (TypeInsSearch.Text == "По логину клиента")
+                    {
+                        var inst = unitOfWork.InsuranceRepository.Entities.Where(n => n.Username == InsParamTextBox.Text).ToList();
+                        InsuranceDG.ItemsSource = inst;
+                    }
+                }
+                else MessageBox.Show("Введите значение параметрa поиска");
+            }
+            else MessageBox.Show("Выберите параметр поиска");
+            InsParamTextBox.Clear();
+        }
+
+        private void InsTypeBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchInsTypesGrid.Visibility = Visibility.Visible;
+        }
+
+        private void ItSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            InsTypeDG.Visibility = Visibility.Visible;
+            var dbContext = new BaseDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            if (TypeInsTypeSearch.Text != "")
+            {
+                if (InsTypesParamTextBox.Text != "")
+                {
+                    if (TypeInsTypeSearch.Text == "По типу")
+                    {
+                        var inst = unitOfWork.InsTypeRepository.Entities.Where(n => n.Type == InsTypesParamTextBox.Text).ToList();
+                        InsTypeDG.ItemsSource = inst;
+                    }
+                    if (TypeInsTypeSearch.Text == "По взносу")
+                    {
+                        int fee = Convert.ToInt32(InsTypesParamTextBox.Text);
+                        var inst = unitOfWork.InsTypeRepository.Entities.Where(n => n.Fee == fee).ToList();
+                        InsTypeDG.ItemsSource = inst;
+                    }
+                    if (TypeInsTypeSearch.Text == "По максимальной выплате")
+                    {
+                        int payout = Convert.ToInt32(InsTypesParamTextBox.Text);
+                        var inst = unitOfWork.InsTypeRepository.Entities.Where(n => n.MaxPayout == payout).ToList();
+                        InsTypeDG.ItemsSource = inst;
+                    }
+                }
+                else MessageBox.Show("Введите значение параметрa поиска");
+            }
+            else MessageBox.Show("Выберите параметр поиска");
+            InsTypesParamTextBox.Clear();
+        }
+
+        private void InсBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchIncGrid.Visibility = Visibility.Visible;
+        }
+
+        private void IncSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            IncidentsGrid.Visibility = Visibility.Visible;
+            var dbContext = new BaseDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            if (TypeIncSearch.Text != "")
+            {
+                if (IncParamTextBox.Text != "")
+                {
+                    if (TypeIncSearch.Text == "По номеру страховки")
+                    {
+                        int num = Convert.ToInt32(IncParamTextBox.Text);
+                        var inc = unitOfWork.IncidentRepository.Entities.Where(n => n.Num == num).ToList();
+                        IncidentsDG.ItemsSource = inc;
+                    }
+                    if (TypeIncSearch.Text == "По логину клиента")
+                    {
+                        var inc = unitOfWork.IncidentRepository.Entities.Where(n => n.Ins.Username == IncParamTextBox.Text).ToList();
+                        IncidentsDG.ItemsSource = inc;
+                    }
+                }
+                else MessageBox.Show("Введите значение параметрa поиска");
+            }
+            else MessageBox.Show("Выберите параметр поиска");
+            IncParamTextBox.Clear();
+        }
+
+        private void PayoutBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchPayoutGrid.Visibility = Visibility.Visible;
+        }
+
+        private void PayoutSearchBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            PayoutsDG.Visibility = Visibility.Visible;
+            var dbContext = new BaseDbContext();
+            var unitOfWork = new UnitOfWork(dbContext);
+            if (TypePayoutSearch.Text != "")
+            {
+                if (PayoutParamTextBox.Text != "")
+                {
+                    if (TypePayoutSearch.Text == "Больше указанного значения")
+                    {
+                        int sum = Convert.ToInt32(PayoutParamTextBox.Text);
+                        var pay = unitOfWork.PayoutRepository.Entities.Where(n => n.Sum > sum).ToList();
+                        PayoutsDG.ItemsSource = pay;
+                    }
+                    if (TypePayoutSearch.Text == "Меньше указанного значения")
+                    {
+                        int sum = Convert.ToInt32(PayoutParamTextBox.Text);
+                        var pay = unitOfWork.PayoutRepository.Entities.Where(n => n.Sum < sum).ToList();
+                        PayoutsDG.ItemsSource = pay;
+                    }
+                    if (TypePayoutSearch.Text == "Равно указанному значению")
+                    {
+                        int sum = Convert.ToInt32(PayoutParamTextBox.Text);
+                        var pay = unitOfWork.PayoutRepository.Entities.Where(n => n.Sum == sum).ToList();
+                        PayoutsDG.ItemsSource = pay;
+                    }
+                }
+                else MessageBox.Show("Введите значение параметрa поиска");
+            }
+            else MessageBox.Show("Выберите параметр поиска");
+            PayoutParamTextBox.Clear();
+        }
+
+        private void CancelBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NotVisible();
+            SearchGrid.Visibility = Visibility.Visible;
         }
 
         public void Exit_Selected(object sender, RoutedEventArgs e)
