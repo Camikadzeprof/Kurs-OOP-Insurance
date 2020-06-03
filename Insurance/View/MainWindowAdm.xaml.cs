@@ -527,7 +527,7 @@ namespace InsuranceComp.View
             var payouts = unitOfWork.PayoutRepository.Entities
                         .ToList();
 
-            IncidentsDG.ItemsSource = payouts;
+            PayoutsDG.ItemsSource = payouts;
         }
 
         private void Search_Selected(object sender, RoutedEventArgs e)
