@@ -24,13 +24,14 @@ namespace InsuranceComp.View
         {
             InitializeComponent();
         }
+
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void LoginEnterButton_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                var unitOfWork = new UnitOfWork(dbContext);
-
                 var user = unitOfWork.UserRepository.Entities
                     .FirstOrDefault(n => (n.Username == LoginTextBox.Text) && (n.Password == LoginFloatingPasswordBox.Password));
 
@@ -39,30 +40,21 @@ namespace InsuranceComp.View
                     if (user.Role == 3)
                     {
                         MainWindowAdm mainWindow = new MainWindowAdm();
-                        mainWindow.Username = LoginTextBox.Text;
-                        mainWindow.Name = user.Name;
-                        mainWindow.Surname = user.Surname;
-                        mainWindow.Role = user.Role;
+                        mainWindow.user = user;
                         mainWindow.Show();
                         this.Close();
                     }
                     else if(user.Role==2)
                     {
                         MainWindowAgent mainWindow = new MainWindowAgent();
-                        mainWindow.Username = LoginTextBox.Text;
-                        mainWindow.Name = user.Name;
-                        mainWindow.Surname = user.Surname;
-                        mainWindow.Role = user.Role;
+                        mainWindow.user = user;
                         mainWindow.Show();
                         this.Close();
                     }
                     else
                     {
                         MainWindowClient mainWindow = new MainWindowClient();
-                        mainWindow.username = LoginTextBox.Text;
-                        mainWindow.Name = user.Name;
-                        mainWindow.Surname = user.Surname;
-                        mainWindow.Role = user.Role;
+                        mainWindow.user = user;
                         mainWindow.Show();
                         this.Close();
                     }
@@ -90,7 +82,6 @@ namespace InsuranceComp.View
         {
             ForgetPasswordWindow forgetPasswordWindow = new ForgetPasswordWindow();
             forgetPasswordWindow.Show();
-            this.Close();
         }
     }
 }

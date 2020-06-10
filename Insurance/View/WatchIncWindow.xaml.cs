@@ -26,11 +26,11 @@ namespace InsuranceComp.View
 
         public int Inc { get; set; }
 
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void WatchIncWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            var dbContext = new BaseDbContext();
-            UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
             try
             {
                 var inc = unitOfWork.IncidentRepository.Entities.FirstOrDefault(n => n.IdIncident == Inc);

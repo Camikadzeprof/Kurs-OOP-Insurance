@@ -15,5 +15,6 @@ namespace InsuranceComp
         public int Fee { get; set; }
 
         public int MaxPayout { get; set; }
+
     }
 }

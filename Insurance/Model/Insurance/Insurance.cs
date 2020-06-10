@@ -22,5 +22,6 @@ namespace InsuranceComp
 
         [ForeignKey("Username")]
         public virtual User user { get; set; }
+
     }
 }

@@ -15,7 +15,7 @@ namespace InsuranceComp
 
         public int IdIncident { get; set; }
 
-        public float Sum { get; set; }
+        public int Sum { get; set; }
 
         [ForeignKey("IdIncident")]
         public virtual Incident incident { get; set; }

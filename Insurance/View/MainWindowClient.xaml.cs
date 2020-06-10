@@ -23,10 +23,11 @@ namespace InsuranceComp.View
         {
             InitializeComponent();
         }
-        public string username { get; set; }
-        public string name { get; set; }
-        public string Surname { get; set; }
-        public int Role { get; set; }
+        
+        public virtual User user { get; set; }
+
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
 
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
@@ -63,7 +64,7 @@ namespace InsuranceComp.View
         private void AddInsBtn_Click(object sender, RoutedEventArgs e)
         {
             InsuranceWindow insuranceWindow = new InsuranceWindow();
-            insuranceWindow.Client = username;
+            insuranceWindow.Client = user.Username;
             insuranceWindow.Show();
             UpdateInsuranceDG();
         }
@@ -72,9 +73,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = InsuranceDG.SelectedIndex;
 
                 if (row != -1)
@@ -99,10 +97,8 @@ namespace InsuranceComp.View
 
         private void UpdateInsuranceDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var ins = unitOfWork.InsuranceRepository.Entities
-                        .Where(n => n.Username == username).ToList();
+                        .Where(n => n.Username == user.Username).ToList();
 
             InsuranceDG.ItemsSource = ins;
         }
@@ -121,8 +117,6 @@ namespace InsuranceComp.View
 
         private void UpdateInsTypeDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var instypes = unitOfWork.InsTypeRepository.Entities
                         .ToList();
 
@@ -155,9 +149,6 @@ namespace InsuranceComp.View
 
         private void WatchIncBtn_Click(object sender, RoutedEventArgs e)
         {
-            var dbContext = new BaseDbContext();
-            UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
             int row = IncidentsDG.SelectedIndex;
 
             if (row != -1)
@@ -177,9 +168,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = IncidentsDG.SelectedIndex;
 
                 if (row != -1)
@@ -205,9 +193,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = IncidentsDG.SelectedIndex;
 
                 if (row != -1)
@@ -239,10 +224,8 @@ namespace InsuranceComp.View
 
         private void UpdateIncidentDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var incidents = unitOfWork.IncidentRepository.Entities
-                        .Where(n => n.Ins.Username == username).ToList();
+                        .Where(n => n.Ins.Username == user.Username).ToList();
 
             IncidentsDG.ItemsSource = incidents;
 
@@ -264,10 +247,8 @@ namespace InsuranceComp.View
 
         private void UpdatePayoutDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var payouts = unitOfWork.PayoutRepository.Entities
-                        .Where(n => n.incident.Ins.Username == username).ToList();
+                        .Where(n => n.incident.Ins.Username == user.Username).ToList();
 
             PayoutsDG.ItemsSource = payouts;
         }

@@ -25,6 +25,9 @@ namespace InsuranceComp.View
             InitializeComponent();
         }
 
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void PayoutWindow_Loaded(object sender, RoutedEventArgs e)
         {
             IncIdTextBlock.Text = IdInc.ToString();
@@ -32,9 +35,6 @@ namespace InsuranceComp.View
 
         private void SavePayoutbtn_Click(object sender, RoutedEventArgs e)
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
-
             Payout pay = new Payout();
             pay.IdIncident = IdInc;
             pay.Sum = Convert.ToInt32(SumTextBox.Text);

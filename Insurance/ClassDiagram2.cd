@@ -1,0 +1,211 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="InsuranceComp.BaseDbContext">
+    <Position X="14.5" Y="16" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAQAAAAAAABAAAAEAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>Model\BaseDbContext\BaseDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InsuranceComp.Incident">
+    <Position X="4.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAEAAAAAAAAAAAgAAAABAAEAAAAAAAAAAAAACA=</HashCode>
+      <FileName>Model\Incident\Incident.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ins" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InsuranceComp.InsType">
+    <Position X="6.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAACAAAAgAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>Model\InsType\InsType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InsuranceComp.Insurance">
+    <Position X="6.75" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAQAAAAAAASA=</HashCode>
+      <FileName>Model\Insurance\Insurance.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Ins" />
+      <Property Name="user" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InsuranceComp.Payout">
+    <Position X="1.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAEAgAAAAAAAAAAAAAAAAAAAAEAQ=</HashCode>
+      <FileName>Model\Payout\Payout.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="incident" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="InsuranceComp.GenericRepository&lt;T&gt;" BaseTypeListCollapsed="true">
+    <Position X="19" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAAAAAAAAAJAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\Repositories\GenericRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.1" />
+  </Class>
+  <Class Name="InsuranceComp.UnitOfWork" BaseTypeListCollapsed="true">
+    <Position X="14.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEQAACAAAAAAAAAEAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\UnitOfWork\UnitOfWork.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="IncidentRepository" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.User">
+    <Position X="10.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAEQAAAAQABAAAAgACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\User\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="InsuranceComp.View.ClientWindow" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAgAAAQAAAACgAAAAAEAAAAAAAAAIAAA=</HashCode>
+      <FileName>View\ClientWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.ForgetPasswordWindow" BaseTypeListCollapsed="true">
+    <Position X="9.75" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAACAAgAAAACAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ForgetPasswordWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.IncidentWindowAgent" BaseTypeListCollapsed="true">
+    <Position X="3" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAAAAAAAAAAAAAAAAQAAAACAAAAAAAAAAAAAEEAEADA=</HashCode>
+      <FileName>View\IncidentWindowAgent.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.IncidentWindowClient" BaseTypeListCollapsed="true">
+    <Position X="8.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAACQAAAAAAgAAAAAEEAEAbA=</HashCode>
+      <FileName>View\IncidentWindowClient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.InsTypeWindow" BaseTypeListCollapsed="true">
+    <Position X="1.25" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAAAAAUAAAACAIAAAAAgAAAgAAAAAAAA=</HashCode>
+      <FileName>View\InsTypeWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.InsuranceWindow" BaseTypeListCollapsed="true">
+    <Position X="10" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAAAACIIAAQAAAACAAAAAAAAAAAAAAAAAACQ=</HashCode>
+      <FileName>View\InsuranceWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.LoginWindow" BaseTypeListCollapsed="true">
+    <Position X="6.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAIAAQAAAACAAAAAEQAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.MainWindowAdm" BaseTypeListCollapsed="true">
+    <Position X="8.5" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAMABBCICBYBDgQAoAEVDCAAIEFhAGABAQkGACRY=</HashCode>
+      <FileName>View\MainWindowAdm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="user" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.MainWindowAgent" BaseTypeListCollapsed="true">
+    <Position X="11" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAMABBCACBQBCgQAIAARDAAAIEFhAGABAAkAACRY=</HashCode>
+      <FileName>View\MainWindowAgent.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="user" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.MainWindowClient" BaseTypeListCollapsed="true">
+    <Position X="13.25" Y="5.75" Width="1.5" />
+    <Compartments>
+      <Compartment Name="Methods" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>CAAAAEABACAABQBAAQIAAAADAAAIEBBAGQAAAgAACRA=</HashCode>
+      <FileName>View\MainWindowClient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="user" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.PayoutWindow" BaseTypeListCollapsed="true">
+    <Position X="11.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAACAAEAAABAAAAAAAAAABAA=</HashCode>
+      <FileName>View\PayoutWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.RegisterWindow" BaseTypeListCollapsed="true">
+    <Position X="8" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAACgAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\RegisterWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="InsuranceComp.View.WatchIncWindow" BaseTypeListCollapsed="true">
+    <Position X="4.75" Y="13.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAiAAAAAAACAAAAAAAAAACA=</HashCode>
+      <FileName>View\WatchIncWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Interface Name="InsuranceComp.IRepository&lt;T&gt;" Collapsed="true">
+    <Position X="19" Y="11.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAEAAAAAAAA=</HashCode>
+      <FileName>Model\Repositories\IRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="InsuranceComp.IUnitOfWork" Collapsed="true">
+    <Position X="14.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAEQAACAAAAAAAAAEAAAAQAAAAAAAAAAAAAEAAAA=</HashCode>
+      <FileName>Model\UnitOfWork\IUnitOfWork.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

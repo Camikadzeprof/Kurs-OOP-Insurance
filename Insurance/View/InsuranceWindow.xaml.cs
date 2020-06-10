@@ -27,13 +27,14 @@ namespace InsuranceComp.View
         public int Ins { get; set; }
         public string Client { get; set; }
 
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void InsuranceWindow_Loaded(object sender, RoutedEventArgs e)
         {
             bool flag = IsInsuranceAlreadyExist(Ins);
             if (flag)
             {
-                var dbContext = new BaseDbContext();
-                var unitOfWork = new UnitOfWork(dbContext);
                 var instype = unitOfWork.InsuranceRepository.Entities
                             .FirstOrDefault(n => n.Num == Ins);
 
@@ -48,9 +49,6 @@ namespace InsuranceComp.View
                 bool flag = IsInsuranceAlreadyExist(Ins);
                 if (flag)
                 {
-                    var dbContext = new BaseDbContext();
-                    var unitOfWork = new UnitOfWork(dbContext);
-
                     var insurance = unitOfWork.InsuranceRepository.Entities
                             .FirstOrDefault(n => n.Num == Ins);
                     
@@ -59,9 +57,6 @@ namespace InsuranceComp.View
                 }
                 else if(TypeTextBox.Text != "")
                 {
-                    var dbContext = new BaseDbContext();
-                    var unitOfWork = new UnitOfWork(dbContext);
-
                     var ins = new Insurance();
                     ins.Type = TypeTextBox.Text;
                     ins.Username = Client;
@@ -84,8 +79,6 @@ namespace InsuranceComp.View
         private bool IsInsuranceAlreadyExist(int ins)
         {
             bool flag = false;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var reminder = unitOfWork.InsuranceRepository.Entities
                     .FirstOrDefault(n => n.Num == ins);
 

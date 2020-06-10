@@ -24,7 +24,7 @@
                                              MaxLength="24" />
 
                 <Button x:Name="LoginEnterButton" Foreground="{StaticResource ButtonForegroundBrush}"  BorderBrush="{x:Null}" Margin="0 10 0 0" Width="70" Height="30" Content="Вход"  Click="LoginEnterButton_Click" />
-                <Button x:Name="ForgetPassword_Button" Style="{StaticResource TextButton}"  Content="Забыли пароль?" Click="ForgetPassword_Button_Click" />
+                <Button x:Name="ForgetPassword_Button" Style="{StaticResource TextButtonPass}"  Content="Забыли пароль?" Click="ForgetPassword_Button_Click" />
                 <Button x:Name="LoginRegisterButton" Foreground="{StaticResource ButtonForegroundBrush}" BorderBrush="{x:Null}" Margin="30,0" Width="120" Height="30" Content="Регистрация" Click="LoginRegisterButton_Click" />
 
             </StackPanel>

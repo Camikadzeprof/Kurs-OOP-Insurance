@@ -26,14 +26,14 @@ namespace InsuranceComp.View
 
         public string InsTyp { get; set; }
 
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
 
         private void InsTypeWindow_Loaded(object sender, RoutedEventArgs e)
         {
             bool flag = IsInsTypeAlreadyExist(InsTyp);
             if (flag)
             {
-                var dbContext = new BaseDbContext();
-                var unitOfWork = new UnitOfWork(dbContext);
                 var instype = unitOfWork.InsTypeRepository.Entities
                             .FirstOrDefault(n => n.Type == InsTyp);
                 TypeTextBox.Text = instype.Type;
@@ -49,8 +49,6 @@ namespace InsuranceComp.View
                 bool flag = IsInsTypeAlreadyExist(InsTyp);
                 if (flag)
                 {
-                    var dbContext = new BaseDbContext();
-                    var unitOfWork = new UnitOfWork(dbContext);
 
                     var type = unitOfWork.InsTypeRepository.Entities
                             .FirstOrDefault(n => n.Type == InsTyp);
@@ -64,8 +62,6 @@ namespace InsuranceComp.View
                 {
                     if (TypeTextBox.Text != "" && FeeTextBox.Text != "" && MaxPayoutTextBox.Text != "")
                     {
-                        var dbContext = new BaseDbContext();
-                        var unitOfWork = new UnitOfWork(dbContext);
 
                         var newtype = new InsType();
                         newtype.Type = TypeTextBox.Text;
@@ -93,8 +89,6 @@ namespace InsuranceComp.View
         private bool IsInsTypeAlreadyExist(string instype)
         {
             bool flag = false;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var reminder = unitOfWork.InsTypeRepository.Entities
                     .FirstOrDefault(n => n.Type == instype);
 

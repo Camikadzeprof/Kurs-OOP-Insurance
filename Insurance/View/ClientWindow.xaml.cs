@@ -24,14 +24,14 @@ namespace InsuranceComp.View
         {
             InitializeComponent();
         }
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
         public string Username { get; set; }
         private void ClientWindow_Loaded(object sender, RoutedEventArgs e)
         {
             bool p = IsUserAlreadyExist(Username);
             if (p)
             {
-                var dbContext = new BaseDbContext();
-                var unitOfWork = new UnitOfWork(dbContext);
 
                 var client = unitOfWork.UserRepository.Entities
                         .FirstOrDefault(n => n.Username == Username);
@@ -47,30 +47,20 @@ namespace InsuranceComp.View
         {
             try
             {
-                string pattern1 = @"[a-zA-Z1-9\-\._]+@[a-z1-9]+(.[a-z1-9]+){1,}";
-                if (!Regex.IsMatch(UsernameTextBox.Text, pattern1) && UsernameTextBox.Text != "")
+                bool k = IsUserAlreadyExist(Username);
+                if (k)
                 {
-                    MessageBox.Show("Некорректный email");
-                }
-                else
-                {
-                    bool k = IsUserAlreadyExist(Username);
-                    if (k)
-                    {
-                        var dbContext = new BaseDbContext();
-                        var unitOfWork = new UnitOfWork(dbContext);
 
-                        var client = unitOfWork.UserRepository.Entities
-                                .FirstOrDefault(n => n.Username == Username);
+                    var client = unitOfWork.UserRepository.Entities
+                            .FirstOrDefault(n => n.Username == Username);
 
-                        client.Username = UsernameTextBox.Text;
-                        client.Name = NameTextBox.Text;
-                        client.Surname = SurnameTextBox.Text;
-                        client.SecretWord = SWTextBox.Text;
-                        unitOfWork.Commit();
-                    }
-                    this.Close();
+                    client.Username = UsernameTextBox.Text;
+                    client.Name = NameTextBox.Text;
+                    client.Surname = SurnameTextBox.Text;
+                    client.SecretWord = SWTextBox.Text;
+                    unitOfWork.Commit();
                 }
+                this.Close();
             }
             catch (Exception ex)
             {
@@ -87,8 +77,7 @@ namespace InsuranceComp.View
         {
             bool flag = false;
 
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
+            
             var contact = unitOfWork.UserRepository.Entities
                     .FirstOrDefault(n => (n.Username == username));
 

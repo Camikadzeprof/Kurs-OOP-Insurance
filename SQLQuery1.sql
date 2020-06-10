@@ -9,8 +9,8 @@ SecretWord nvarchar(25) NOT NULL,
 );
 Create Table InsTypes(
 [Type] nvarchar(25) constraint PK_InsuranceTypes primary key,
-Fee int NOT NULL,
-MaxPayout int NOT NULL
+Fee int not null,
+MaxPayout int not null
 );
 Create Table Insurances(
 Num int identity(1,1) constraint PK_Insurances primary key,
@@ -27,5 +27,5 @@ Explain nvarchar(Max),
 Create Table Payouts(
 IdPayout int identity(1,1) constraint PK_Payouts primary key,
 IdIncident int NOT NULL constraint FK_Payouts_IdIncident foreign key references Incidents(IdIncident),
-[Sum] real NOT NULL
+[Sum] int NOT NULL
 );

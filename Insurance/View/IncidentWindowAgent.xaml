@@ -23,8 +23,12 @@
                         <TextBlock x:Name="ExplainTextBlock" Padding="1" IsEnabled="False"
                                  materialdesign:HintAssist.Hint="Описание случая" FontSize="14" />
                     </StackPanel>
-                    <TextBox x:Name="StatusComboBox" Padding="1" BorderBrush="{x:Null}"
-                                 materialdesign:HintAssist.Hint="Статус" FontSize="14" />
+                    <ComboBox x:Name="StatusComboBox" Padding="1" BorderBrush="{x:Null}"
+                                 materialdesign:HintAssist.Hint="Статус" FontSize="14" >
+                        <ComboBoxItem>На рассмотрении</ComboBoxItem>
+                        <ComboBoxItem>Отказано</ComboBoxItem>
+                        <ComboBoxItem>Одобрено</ComboBoxItem>
+                    </ComboBox>
                     <StackPanel Margin="15 1" Orientation="Horizontal">
                         <Button x:Name="SaveIncbtn" Background="{StaticResource ButtonGreenBrush}" BorderBrush="{StaticResource ButtonGreenBrush}" Margin="35 20" Content="OK" Click="SaveIncbtn_Click" />
                         <Button x:Name="CancelBtn" Margin="35 20" Content="Cancel" Click="CancelBtn_Click" />

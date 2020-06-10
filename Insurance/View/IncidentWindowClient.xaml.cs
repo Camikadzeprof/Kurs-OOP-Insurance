@@ -28,10 +28,11 @@ namespace InsuranceComp.View
             InitializeComponent();
         }
 
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void IncidentWindowClient_Loaded(object sender, RoutedEventArgs e)
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var insnums = unitOfWork.InsuranceRepository.Entities
                 .ToList();
         }
@@ -43,8 +44,6 @@ namespace InsuranceComp.View
                 bool flag = IsIncidentAlreadyExist(Inc);
                 if (flag)
                 {
-                    var dbContext = new BaseDbContext();
-                    var unitOfWork = new UnitOfWork(dbContext);
 
                     var inc = unitOfWork.IncidentRepository.Entities
                             .FirstOrDefault(n => n.IdIncident == Inc);
@@ -70,8 +69,6 @@ namespace InsuranceComp.View
                 }
                 else
                 {
-                    var dbContext = new BaseDbContext();
-                    var unitOfWork = new UnitOfWork(dbContext);
 
                     var inc = new Incident();
                     inc.Num = Convert.ToInt32(NumTextBox.Text);
@@ -102,7 +99,7 @@ namespace InsuranceComp.View
         {
             this.Close();
         }
-
+        
         string imgLocation = "";
         BitmapImage bitmap1;
         private void photoBtn_Click(object sender, RoutedEventArgs e)
@@ -123,8 +120,6 @@ namespace InsuranceComp.View
         private bool IsIncidentAlreadyExist(int inc)
         {
             bool flag = false;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var reminder = unitOfWork.IncidentRepository.Entities
                     .FirstOrDefault(n => n.IdIncident == inc);
 

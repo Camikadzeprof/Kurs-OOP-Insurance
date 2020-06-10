@@ -24,6 +24,15 @@ namespace InsuranceComp.View
         {
             InitializeComponent();
         }
+
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
+        private void ForgetSW_Button_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Обратитесь к администратору");
+        }
+
         private void ForgetPasswordButton_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -32,8 +41,6 @@ namespace InsuranceComp.View
                 {
                     if (ForgetPasswordFloatingPasswordBox1.Password.ToString() == ForgetPasswordFloatingPasswordBox2.Password.ToString())
                     {
-                        var dbContext = new BaseDbContext();
-                        var unitOfWork = new UnitOfWork(dbContext);
 
                         var user = unitOfWork.UserRepository.Entities
                             .FirstOrDefault(n => (n.Username == ForgetPasswordLoginTextBox.Text) && (n.SecretWord == ForgetPasswordSecretWordTextBox.Text));

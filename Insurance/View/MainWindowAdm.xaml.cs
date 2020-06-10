@@ -23,10 +23,12 @@ namespace InsuranceComp.View
         {
             InitializeComponent();
         }
-        public string Username { get; set; }
-        public string name { get; set; }
-        public string Surname { get; set; }
-        public int Role { get; set; }
+
+        public virtual User user { get; set; }
+
+        private static BaseDbContext dbContext = new BaseDbContext();
+        private UnitOfWork unitOfWork = new UnitOfWork(dbContext);
+
         private void ButtonOpenMenu_Click(object sender, RoutedEventArgs e)
         {
             ButtonOpenMenu.Visibility = Visibility.Collapsed;
@@ -62,9 +64,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = PersonelDG.SelectedIndex;
                 if (row != -1)
                 {
@@ -85,48 +84,8 @@ namespace InsuranceComp.View
             }
         }
 
-        private void DeletePersonelBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int row = PersonelDG.SelectedIndex;
-
-                if (row != -1)
-                {
-                    var res = MessageBox.Show("Вы уверены, что хотите удалить Агента?\nВосстановление невозможно", "Подтверждение", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
-                    {
-                        var dbContext = new BaseDbContext();
-                        UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
-                        var ci = new DataGridCellInfo(PersonelDG.Items[row], PersonelDG.Columns[0]);
-                        var crow = ci.Column.GetCellContent(ci.Item) as TextBlock;
-                        var vrow = crow.Text;
-
-                        var user = unitOfWork.UserRepository.Entities
-                                .FirstOrDefault(p => p.Username == vrow);
-                        unitOfWork.UserRepository.Remove(user);
-                        unitOfWork.Commit();
-                        UpdatePersonelDG();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Для удаления необходимо выбрать запись");
-                }
-
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void UpdatePersonelDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
 
             var notes = unitOfWork.UserRepository.Entities
                         .Where(n => n.Role == 2).ToList();
@@ -172,9 +131,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = ClientsDG.SelectedIndex;
 
                 if (row != -1)
@@ -196,47 +152,8 @@ namespace InsuranceComp.View
             }
         }
 
-        private void DelClientBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int row = ClientsDG.SelectedIndex;
-
-                if (row != -1)
-                {
-                    var res = MessageBox.Show("Вы уверены, что хотите удалиить Клиента?\nВосстановление невозможно", "Удаление клиента", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                    if (res == MessageBoxResult.Yes)
-                    {
-                        var dbContext = new BaseDbContext();
-                        UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
-                        var ci = new DataGridCellInfo(ClientsDG.Items[row], ClientsDG.Columns[0]);
-                        var crow = ci.Column.GetCellContent(ci.Item) as TextBlock;
-
-                        var client = unitOfWork.UserRepository.Entities
-                                .FirstOrDefault(p => p.Username == crow.Text);
-                        unitOfWork.UserRepository.Remove(client);
-                        unitOfWork.Commit();
-                        UpdateClientsDG();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Для удаления необходимо выбрать запись");
-                }
-
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
         private void UpdateClientsDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
-
             var clients = unitOfWork.UserRepository.Entities
                 .Where(n => n.Role == 1)
                 .ToList();
@@ -266,9 +183,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = InsTypeDG.SelectedIndex;
 
                 if (row != -1)
@@ -294,9 +208,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = InsuranceDG.SelectedIndex;
 
                 if (row != -1)
@@ -321,8 +232,6 @@ namespace InsuranceComp.View
 
         private void UpdateInsuranceDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var ins = unitOfWork.InsuranceRepository.Entities
                         .ToList();
 
@@ -358,9 +267,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = InsTypeDG.SelectedIndex;
 
                 if (row != -1)
@@ -386,9 +292,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = InsTypeDG.SelectedIndex;
 
                 if (row != -1)
@@ -413,8 +316,6 @@ namespace InsuranceComp.View
 
         private void UpdateInsTypeDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var instypes = unitOfWork.InsTypeRepository.Entities
                         .ToList();
 
@@ -442,9 +343,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = IncidentsDG.SelectedIndex;
 
                 if (row != -1)
@@ -470,9 +368,6 @@ namespace InsuranceComp.View
         {
             try
             {
-                var dbContext = new BaseDbContext();
-                UnitOfWork unitOfWork = new UnitOfWork(dbContext);
-
                 int row = IncidentsDG.SelectedIndex;
 
                 if (row != -1)
@@ -497,8 +392,6 @@ namespace InsuranceComp.View
 
         private void UpdateIncidentDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var incidents = unitOfWork.IncidentRepository.Entities
                         .ToList();
 
@@ -522,8 +415,6 @@ namespace InsuranceComp.View
 
         private void UpdatePayoutDG()
         {
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             var payouts = unitOfWork.PayoutRepository.Entities
                         .ToList();
 
@@ -546,8 +437,6 @@ namespace InsuranceComp.View
         {
             NotVisible();
             PersonelGrid.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             if (TypeAgSearch.Text != "")
             {
                 if (AgParamTextBox.Text != "")
@@ -584,8 +473,6 @@ namespace InsuranceComp.View
         {
             NotVisible();
             ClientsGrid.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             if (TypeClSearch.Text != "")
             {
                 if (ClParamTextBox.Text != "")
@@ -621,9 +508,7 @@ namespace InsuranceComp.View
         private void InsSearchBtn_Click(object sender, RoutedEventArgs e)
         {
             NotVisible();
-            InsuranceDG.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
+            InsuranceGrid.Visibility = Visibility.Visible;
             if (TypeInsSearch.Text != "")
             {
                 if (InsParamTextBox.Text != "")
@@ -654,9 +539,7 @@ namespace InsuranceComp.View
         private void ItSearchBtn_Click(object sender, RoutedEventArgs e)
         {
             NotVisible();
-            InsTypeDG.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
+            InsTypesGrid.Visibility = Visibility.Visible;
             if (TypeInsTypeSearch.Text != "")
             {
                 if (InsTypesParamTextBox.Text != "")
@@ -695,8 +578,6 @@ namespace InsuranceComp.View
         {
             NotVisible();
             IncidentsGrid.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
             if (TypeIncSearch.Text != "")
             {
                 if (IncParamTextBox.Text != "")
@@ -728,9 +609,7 @@ namespace InsuranceComp.View
         private void PayoutSearchBtn_Click(object sender, RoutedEventArgs e)
         {
             NotVisible();
-            PayoutsDG.Visibility = Visibility.Visible;
-            var dbContext = new BaseDbContext();
-            var unitOfWork = new UnitOfWork(dbContext);
+            PayoutsGrid.Visibility = Visibility.Visible;
             if (TypePayoutSearch.Text != "")
             {
                 if (PayoutParamTextBox.Text != "")
