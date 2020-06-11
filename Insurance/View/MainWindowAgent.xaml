@@ -179,7 +179,6 @@
             </DataGrid>
             <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" Margin="5">
                 <Button x:Name="UpdIncBtn" Content="Посмотреть" Margin="20" Click="UpdIncBtn_Click" />
-                <Button x:Name="DelIncBtn" Content="Удалить" Margin="20" Click="DelIncBtn_Click" />
             </StackPanel>
 
         </Grid>

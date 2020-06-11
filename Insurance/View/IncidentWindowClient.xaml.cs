@@ -47,10 +47,38 @@ namespace InsuranceComp.View
 
                     var inc = unitOfWork.IncidentRepository.Entities
                             .FirstOrDefault(n => n.IdIncident == Inc);
-                    if (inc.Status != "Отказано" || inc.Status != "Одобрено")
+                    if (IsInsuranceAlreadyExist(Convert.ToInt32(NumTextBox.Text)))
                     {
+                        if (inc.Status != "Отказано" || inc.Status != "Одобрено")
+                        {
+                            inc.Num = Convert.ToInt32(NumTextBox.Text);
+                            inc.Explain = ExplainTextBox.Text;
+                            if (imgLocation == "")
+                            {
+                                inc.File = "/Images/noimagefound.jpg";
+                            }
+                            else
+                            {
+                                inc.File = imgLocation;
+                            }
+                            unitOfWork.Commit();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Изменение недоступно");
+                            this.Close();
+                        }
+                    }
+                    else throw new Exception("Страховки с заданным номером не существует");
+                }
+                else
+                {
+                    if (IsInsuranceAlreadyExist(Convert.ToInt32(NumTextBox.Text)))
+                    {
+                        var inc = new Incident();
                         inc.Num = Convert.ToInt32(NumTextBox.Text);
                         inc.Explain = ExplainTextBox.Text;
+                        inc.Status = "На рассмотрении";
                         if (imgLocation == "")
                         {
                             inc.File = "/Images/noimagefound.jpg";
@@ -59,39 +87,18 @@ namespace InsuranceComp.View
                         {
                             inc.File = imgLocation;
                         }
+
+                        unitOfWork.IncidentRepository.Add(inc);
                         unitOfWork.Commit();
+                        MessageBox.Show("Добавлен новый случай");
                     }
-                    else
-                    {
-                        MessageBox.Show("Изменение недоступно");
-                        this.Close();
-                    }
-                }
-                else
-                {
-
-                    var inc = new Incident();
-                    inc.Num = Convert.ToInt32(NumTextBox.Text);
-                    inc.Explain = ExplainTextBox.Text;
-                    inc.Status = "На рассмотрении";
-                    if (imgLocation == "")
-                    {
-                        inc.File = "/Images/noimagefound.jpg";
-                    }
-                    else
-                    {
-                        inc.File = imgLocation;
-                    }
-
-                    unitOfWork.IncidentRepository.Add(inc);
-                    unitOfWork.Commit();
-                    MessageBox.Show("Добавлен новый случай");
+                    else throw new Exception("Страховки с заданным номером не существует");
                 }
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка добавления нового случая\n" + ex.StackTrace);
+                MessageBox.Show("Ошибка добавления нового случая\n" + ex.Message);
             }
         }
 
@@ -117,13 +124,22 @@ namespace InsuranceComp.View
             }
         }
 
+        private bool IsInsuranceAlreadyExist(int ins)
+        {
+            var insur = unitOfWork.InsuranceRepository.Entities.FirstOrDefault(n => n.Num == ins);
+            if (insur != null)
+                return true;
+            else
+                return false;
+        }
+
         private bool IsIncidentAlreadyExist(int inc)
         {
             bool flag = false;
-            var reminder = unitOfWork.IncidentRepository.Entities
+            var inci = unitOfWork.IncidentRepository.Entities
                     .FirstOrDefault(n => n.IdIncident == inc);
 
-            if (reminder != null)
+            if (inci != null)
                 return flag = true;
             return flag;
         }

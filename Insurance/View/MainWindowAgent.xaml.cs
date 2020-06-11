@@ -155,10 +155,10 @@ namespace InsuranceComp.View
                 {
                     var ci = new DataGridCellInfo(InsuranceDG.Items[row], InsuranceDG.Columns[0]);
                     var crow = ci.Column.GetCellContent(ci.Item) as TextBlock;
-                    string vrow = crow.Text;
+                    int vrow = Convert.ToInt32(crow.Text);
 
                     var insurance = unitOfWork.InsuranceRepository.Entities
-                            .FirstOrDefault(p => p.Num == Convert.ToInt32(vrow));
+                            .FirstOrDefault(p => p.Num == vrow);
                     unitOfWork.InsuranceRepository.Remove(insurance);
                     unitOfWork.Commit();
                     MessageBox.Show("Страховка успешно удалена");
@@ -234,32 +234,6 @@ namespace InsuranceComp.View
                     UpdateIncidentDG();
                 }
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        private void DelIncBtn_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                int row = IncidentsDG.SelectedIndex;
-
-                if (row != -1)
-                {
-                    var ci = new DataGridCellInfo(IncidentsDG.Items[row], IncidentsDG.Columns[0]);
-                    var crow = ci.Column.GetCellContent(ci.Item) as TextBlock;
-                    string vrow = crow.Text;
-
-                    var incident = unitOfWork.IncidentRepository.Entities
-                            .FirstOrDefault(p => p.IdIncident == Convert.ToInt32(vrow));
-                    unitOfWork.IncidentRepository.Remove(incident);
-                    unitOfWork.Commit();
-                    MessageBox.Show("Страховой случай удален");
-                    UpdateIncidentDG();
-                }
             }
             catch (Exception ex)
             {

@@ -51,23 +51,31 @@ namespace InsuranceComp.View
                 {
                     var insurance = unitOfWork.InsuranceRepository.Entities
                             .FirstOrDefault(n => n.Num == Ins);
-                    
-                    insurance.Type = TypeTextBox.Text;
-                    unitOfWork.Commit();
+
+                    if (IsITAlreadyExist(TypeTextBox.Text))
+                    {
+                        insurance.Type = TypeTextBox.Text;
+                        unitOfWork.Commit();
+                    }
+                    else throw new Exception("Указанный тип страховки отсутствует");
                 }
                 else if(TypeTextBox.Text != "")
                 {
                     var ins = new Insurance();
-                    ins.Type = TypeTextBox.Text;
-                    ins.Username = Client;
-                    unitOfWork.InsuranceRepository.Add(ins);
-                    unitOfWork.Commit();
+                    if (IsITAlreadyExist(TypeTextBox.Text))
+                    {
+                        ins.Type = TypeTextBox.Text;
+                        ins.Username = Client;
+                        unitOfWork.InsuranceRepository.Add(ins);
+                        unitOfWork.Commit();
+                    }
+                    else throw new Exception("Указанный тип страховки отсутствует");
                 }
                 this.Close();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ошибка добавления новой страховки\n" + ex.StackTrace);
+                MessageBox.Show("Ошибка добавления новой страховки\n" + ex.Message);
             }
         }
 
@@ -76,13 +84,22 @@ namespace InsuranceComp.View
             this.Close();
         }
 
+        private bool IsITAlreadyExist(string type)
+        {
+            var it = unitOfWork.InsTypeRepository.Entities.FirstOrDefault(n => n.Type == type);
+            if (it != null)
+                return true;
+            else
+                return false;
+        }
+
         private bool IsInsuranceAlreadyExist(int ins)
         {
             bool flag = false;
-            var reminder = unitOfWork.InsuranceRepository.Entities
+            var insur = unitOfWork.InsuranceRepository.Entities
                     .FirstOrDefault(n => n.Num == ins);
 
-            if (reminder != null)
+            if (insur != null)
                 return flag = true;
             return flag;
         }
